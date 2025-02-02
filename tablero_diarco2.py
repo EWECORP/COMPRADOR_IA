@@ -6,7 +6,7 @@ from datetime import datetime
 
 # Generar datos simulados
 def generar_datos():
-    fechas = pd.date_range(start="2024-01-01", periods=12, freq="M")
+    fechas = pd.date_range(start="2024-01-01", periods=12, freq="ME")
     categorias = ["Abarrotes", "Bebidas", "Lácteos", "Perecederos"]
     datos = {
         "Fecha": np.tile(fechas, len(categorias)),

@@ -212,6 +212,32 @@ Cuando hagas push, recuerda hacerlo a ambos (o tendrás un bonito caos...)
 
 `git remote set-url origin nombre-app`
 
+
+## Obtener cambios de un repositorio remoto
+### Clonar un repositorio
+Para obtener una copia completa del repositorio de otro usuario, use git clone de esta forma:
+
+`$ git clone https://github.com/USERNAME/REPOSITORY.git`  
+
+### Extraer cambios de un repositorio remoto
+Use git fetch para recuperar el nuevo trabajo realizado por otras personas. Al capturar desde un repositorio se obtienen todas las ramas de seguimiento remoto nuevas y etiquetas sin combinar estos cambios en las ramas propias.
+Si ya tiene un repositorio local con una URL remota configurada para el proyecto deseado, puede capturar toda la información nueva si usa git fetch *remotename* en el terminal:
+
+`$ git fetch REMOTE-NAME`
+
+### Fusionar cambios hechos en línea en tu rama local
+La fusión combina los cambios realizados por otros con tus cambios locales.
+Por lo general, fusionas una rama de seguimiento remoto (es decir, una rama extraída desde un repositorio remoto) con tu rama local:
+
+`$ git merge REMOTE-NAME/BRANCH-NAME`      
+
+### Extraer cambios hechos on line y fusionarlos en mi repositorio local.
+git pull es un método abreviado útil para completar git fetch y git merge en el mismo comando:
+
+`$ git pull REMOTE-NAME BRANCH-NAME`
+# Grabs online updates and merges them with your local work
+Como pull realiza una combinación en los cambios recuperados, debe asegurarse de que el trabajo local se confirma antes de ejecutar el comando pull. Si se produce un conflicto de combinación que no puede resolver, o si decide salir de la combinación, puede usar git merge --abort para restaurar la rama al estado que tenía antes de extraerla.
+
 ## Configurar Git
 
 `git config --global user.name "nombre"`
