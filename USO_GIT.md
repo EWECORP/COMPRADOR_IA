@@ -1,6 +1,6 @@
 # Guía rápida - Git 
 
-Comandos de Git usados en el día a día. Versión: Explicado rapidillo pa' ti y pa' mi...
+#### Comandos de Git usados en el día a día. Versión: Explicado rapidito pa' ti y pa' mi...
 
 ## Diferentes estados de tu archivo
 1. **Working area**: Pues como bien dice, el momento en el que estás trabajado. Escribiendo tus cosas, borrando...
@@ -9,13 +9,13 @@ Comandos de Git usados en el día a día. Versión: Explicado rapidillo pa' ti y
 
 ![Flujo de trabajo](https://github.com/pablorgarcia/Guia-rapida-para-Git/blob/master/images/workflow.png "Flujo de trabajo")
 
-
-### Mirar el estado de nuestros archivos 
+## ENFOQUE LOCAL 
+### 1) Mirar el estado de nuestros archivos 
 
 `git status`
 Nos dice el estado en el que se encuentran nuestros archivos. Si están sin seguimiento, si tienen seguimiento pero se han cambiado o si están en Stagin ya.
 
-### Meter en Stagin Area
+### 2) Meter en Stagin Area
 
 `git add <archivo>`
 Añade el archivo que le pasemos a stagin area, y que luego estará en el commit.
@@ -24,14 +24,14 @@ Añade el archivo que le pasemos a stagin area, y que luego estará en el commit
 Añade varios archivos a stagin.
  
 `git add .`
-El "." agrega todo a stagin.
+El "." agrega **Todo** a stagin.
 
-### Remover de Stagin Area
+### -->) Remover de Stagin Area
 
 `git rm <archivo>`
 Elimina un archivo de stagin.
 
-### Hacer un commit
+### 3) Hacer un commit
 
 `git commit -m "Mensaje descriptivo del cambio"`
 Con este comando hacemos un commit de los archivos que estén en stagin area.
@@ -44,10 +44,11 @@ Hacemos un commit de solo un archivo de stagin.
 `git commit --amend -m "Mensaje descriptivo del cambio"`
 Modificamos el último commit.
 
-### Hacer un push
+### 4) Hacer un push
 Tus cambios están ahora en el HEAD de tu copia local. Para enviar estos cambios a tu repositorio remoto ejecuta.
 `git push origin master`
 
+## GESTIONAR CAMBIOS
 ### Guardar rápido tus cambios, sin llegar a hacer un 'add'
 
 Muchas veces, cuando has estado trabajando una parte del código, los archivos se pueden desordenar y al querer cambiar de rama un momento para hacer otra cosa hay un conflicto. Si no quieres hacer un commit de un trabajo porque va por la mitad y quieres volver a ese punto más tarde puedes hacer un:
@@ -95,7 +96,7 @@ La opción "--hard" provoca que si hubiera archivos que no se han agregado al re
 `git reset --soft`
 Iguala tu 'staging area' con el 'repositorio', no afectará tu 'working directory' y hace un `add` a los archivos. No borra el código.
 
-## Las ramas
+## GESTIONAR RAMAS
 Toma el estado en el que se encuentra el archivo y hace una derivación a otro espacio, de forma que se puede trabajar en él sin afectar al archivo inicial.
 
 Más adelante podemos juntarlos.
@@ -110,13 +111,33 @@ Por ejemplo: `git branch someTest`
 `git checkout <nombre_rama>`
 Por ejemplo: `git checkout mi-rama`
 
-### Trabaja en tu rama 
+### Identificar en que rama estoy trabajando
+`git remote -v`
 
-Dentro de tu rama puedes trabajar normal, hacer tus commits y avanzar en el proyecto, pero lo que haces está sólo en esa rama. 
+Este comando te mostrará las URL de los repositorios remotos asociados a tu repositorio local, tanto para las operaciones de fetch (obtener) como de push (enviar). Verás algo similar a esto:
 
-Si cambias de rama sin más lo que hayas hecho en esa rama no lo vas a ver.
+`origin  https://github.com/usuario/repo.git (fetch)`
+`origin  https://github.com/usuario/repo.git (push)`
 
-Para poder juntar todo tienes que mergear (fundir o fusionar) las ramas.
+* Dentro de tu rama puedes trabajar normal, hacer tus commits y avanzar en el proyecto, pero lo que haces está sólo en esa rama. 
+
+* Si cambias de rama sin más lo que hayas hecho en esa rama no lo vas a ver.
+
+* Para poder juntar todo tienes que mergear (fundir o fusionar) las ramas.
+
+### Actualizar repositorio local
+Para actualizar tu repositorio local en Git con los cambios más recientes del repositorio remoto, sigue estos pasos:
+1. **Abrir la terminal**: Abre la terminal o el símbolo del sistema en tu computadora.
+
+2. **Navegar al repositorio local**: Cambia el directorio a la carpeta de tu repositorio local utilizando el comando cd seguido de la ruta al repositorio. Por ejemplo:
+`cd /ruta/a/tu/repositorio`
+
+3. **Obtener los cambios del repositorio remoto**: Utiliza el comando git fetch para obtener los cambios del repositorio remoto, *sin aplicarlos a tu rama actual*:
+`git fetch`
+4. **Actualizar la rama local con los cambios remotos**: Utiliza el comando git pull para **combinar los cambios** del repositorio remoto en tu rama actual:
+`git pull`
+Esto descargará y aplicará los cambios del repositorio remoto en tu rama local.
+¡Y listo! Ahora tu repositorio local está actualizado con los cambios más recientes del repositorio remoto. Si tienes alguna otra duda o necesitas más ayuda, estoy aquí para asistirte.
 
 ## Merge
 
@@ -189,15 +210,16 @@ Cuanto más acutalizada tengas la rama donde estás y tu repo, menos conflictos 
 `git fetch` Descarga el historial del repo remoto.
 
 
-### Creando un projecto desde cero
-git init
-git add README.md
-git add .
-git commit -m "first commit"
-git remote add origin https:// github.com / <userName> / <repoName>.git
-git push --force origin master
+## Creando un projecto desde cero
+`git init`
+`git add README.md`
+`git add .`
+`git commit -m "first commit"`
+`git remote add origin https:// github.com / <userName> / <repoName>.git`
+`git push --force origin master`
 
 ### ¿Tu repositorio local no está apuntando al repositorio remoto?
+Identificar en GitHub el nombre del repositorio.git correcto.
 
 `git remote add <nombre_para_remoto> <url>`
 Ejemplo: `git remote add origin https://github.com/usuario/nombre_del_repositorio.git`
@@ -235,7 +257,9 @@ Por lo general, fusionas una rama de seguimiento remoto (es decir, una rama extr
 git pull es un método abreviado útil para completar git fetch y git merge en el mismo comando:
 
 `$ git pull REMOTE-NAME BRANCH-NAME`
-# Grabs online updates and merges them with your local work
+
+
+# Fusionando Ramas
 Como pull realiza una combinación en los cambios recuperados, debe asegurarse de que el trabajo local se confirma antes de ejecutar el comando pull. Si se produce un conflicto de combinación que no puede resolver, o si decide salir de la combinación, puede usar git merge --abort para restaurar la rama al estado que tenía antes de extraerla.
 
 ## Configurar Git
