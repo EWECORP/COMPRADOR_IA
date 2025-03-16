@@ -48,6 +48,28 @@ Modificamos el último commit.
 Tus cambios están ahora en el HEAD de tu copia local. Para enviar estos cambios a tu repositorio remoto ejecuta.
 `git push origin master`
 
+
+### 5) Deshacer el último commit
+Esto me pasó cuando me olvidé de achicar el archivo y me rechazó por demasiado tamaño.
+`git reset --soft HEAD~1`
+
+Esto moverá el puntero del commit atrás, dejando los archivos en estado "modificado" sin perder las ediciones.
+
+
+### 6) Git Status dice AHEAD
+#### ✅ Opción 1: Forzar la sincronización eliminando el commit local
+Si el commit no se ha subido a GitHub y quieres descartarlo completamente, puedes hacer:
+
+`git reset --hard HEAD~1`
+Esto eliminará el commit y también deshará cualquier cambio en los archivos.
+
+⚠️ Importante: Este comando descarta los cambios en los archivos. Si quieres conservarlos, usa la opción 2.
+
+#### ✅ Opción 2: Restablecer a la última versión en GitHub sin perder los cambios
+Si deseas mantener los cambios en tus archivos pero deshacer el commit sin eliminar modificaciones, usa:
+
+`git reset --mixed origin/main`
+
 ## GESTIONAR CAMBIOS
 ### Guardar rápido tus cambios, sin llegar a hacer un 'add'
 
